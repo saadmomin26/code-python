@@ -1,0 +1,3 @@
+#a goldsmith is filling a ure box with up to 30 kg capacity .he has gold baes of 10Kg  worth 200 unit ,slivwer bars of 6 kg worth 90 kg ,platinum
+#pice of 8 kg worth 160 unit diamond packets of 4 kg worth 1230 kg unit and ruby stone 5 kg worth 100 unit .he  must choose cerfully so thate the combination value is maximun without exceeding the 30 kg capacity of the box
+# write a code for this in short in python

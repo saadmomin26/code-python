@@ -1,0 +1,75 @@
+# import random
+
+# n=random.randint(1,100)
+# a=-1
+# guesses=0
+# while(a!=n):
+#     guesses +=1
+#     a=int(input("Guess the number:"))
+#     if(a>n):
+#         print("Lower number please")
+#     else:
+#         print("Higher number please")
+# print(f"You have guess the number {n} correccly in {guesses} attempts")
+
+### added GUI to bt gpt
+import tkinter as tk
+from tkinter import messagebox
+import random
+
+# Generate random number between 1 and 100
+n = random.randint(1, 100)
+guesses = 0
+
+def check_guess():
+    global guesses, n
+    try:
+        a = int(entry.get())   # get user input
+    except ValueError:
+        messagebox.showwarning("Invalid Input", "Please enter a whole number.")
+        return
+
+    guesses += 1
+    if a > n:
+        result_label.config(text="Lower number please!")
+    elif a < n:
+        result_label.config(text="Higher number please!")
+    else:
+        messagebox.showinfo("Congratulations!",
+                            f"You guessed the number {n} correctly in {guesses} attempts!")
+        reset_game()
+
+def reset_game():
+    global n, guesses
+    n = random.randint(1, 100)
+    guesses = 0
+    result_label.config(text="I'm thinking of a number between 1 and 100...")
+    entry.delete(0, tk.END)
+
+# Create main window
+root = tk.Tk()
+root.title("Number Guessing Game")
+root.geometry("400x250")
+
+# Heading
+title_label = tk.Label(root, text="🎲 Number Guessing Game 🎲", font=("Arial", 14, "bold"))
+title_label.pack(pady=10)
+
+# Instructions
+result_label = tk.Label(root, text="I'm thinking of a number between 1 and 100...",
+                        font=("Arial", 12))
+result_label.pack(pady=10)
+
+# Entry for guess
+entry = tk.Entry(root, font=("Arial", 12), justify="center")
+entry.pack(pady=5)
+
+# Buttons
+check_button = tk.Button(root, text="Check Guess", font=("Arial", 12), command=check_guess)
+check_button.pack(pady=5)
+
+reset_button = tk.Button(root, text="Reset Game", font=("Arial", 12), command=reset_game)
+reset_button.pack(pady=5)
+
+# Run the GUI loop
+root.mainloop()

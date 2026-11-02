@@ -1,0 +1,26 @@
+def knapsack(weights, values, capacity):
+    n = len(weights)
+    dp = [[0] * (capacity + 1) for _ in range(n + 1)]
+
+    for i in range(1, n + 1):
+        for w in range(capacity + 1):
+            if weights[i - 1] <= w:
+                dp[i][w] = max(values[i - 1] + dp[i - 1][w - weights[i - 1]], dp[i - 1][w])
+            else:
+                dp[i][w] = dp[i - 1][w]
+
+    return dp[n][capacity]
+
+items = [
+    (10, 200),  
+    (6, 90), 
+    (8, 160),    
+    (4, 1230),   
+    (5, 100)    
+]
+
+weights = [w for w, v in items]
+values = [v for w, v in items]
+capacity = 30
+
+print("Maximum value in box:", knapsack(weights, values, capacity))
